@@ -138,20 +138,3 @@ function updateVisiblePages(currentPage) {
         }
     });
 }
-
-/** 08-02-2023 */
-
-// jQuery(document).ready(function() {
-//     jQuery('.acf-checkbox-list input[type="checkbox"]').on('click', function() {
-//         if (jQuery(this).is(':checked')) {
-//             //jQuery(this).prop('checked',false);
-//             // jQuery(this).parents('li').find('.children input[type="checkbox"]').attr('checked', true);
-//             jQuery(this).parents('li').children('.children input[type="checkbox"]').attr('checked', true);
-//         } else {
-//             //jQuery(this).prop('checked',true);
-//             // alert("not checked");
-
-//             jQuery(this).parents('li').find('.children input[type="checkbox"]').attr('checked', false);
-//         }
-//     })
-// })
