@@ -160,31 +160,3 @@ function filter_books_fun($page_num, $cat_slug, $writer,$book_evnt,$search_book)
     
     return json_encode($html);
 }
-
-
-add_action( 'wp_ajax_nopriv_get_filter_posts', 'get_filter_posts' );
-add_action( 'wp_ajax_get_filter_posts', 'get_filter_posts' );
-function get_filter_posts()
-{
-    $post_type = (isset($_POST['post_type']) && !empty($_POST['post_type'])) ? $_POST['post_type'] : 'post' ;
-    $current_page = (isset($_POST['current_page']) && !empty($_POST['current_page'])) ? $_POST['current_page'] : 1 ;
-
-    filter_posts_fun($current_page, $post_type);
-}
-
-function filter_posts_fun($current_page,$post_type)
-{
-    $posts_obj = new Filter_post();
-    $posts = $posts_obj->get_posts( $post_type , $current_page );
-    
-    $posts_obj->get_post_html($posts);
-    $posts_obj->get_post_pagination($posts,$current_page);
-        
-    die;
-}
-
-add_action('init', function() {
-    global $wpdb;
-    $removefromdb = $wpdb->query("DELETE a,b,c FROM wp_posts a  LEFT JOIN wp_term_relationships b ON (a.ID = b.object_id) LEFT JOIN wp_postmeta c ON (a.ID = c.post_id)
-    WHERE a.post_status = 'draft'");
-});
